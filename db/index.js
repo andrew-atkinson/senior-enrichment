@@ -11,7 +11,7 @@ console.log(chalk.yellow(`Opening database connection to ${connectionString}`));
 
 // create the database instance that can be used in other database files
 const db = module.exports = new Sequelize(connectionString, {
-  sync: true,
+  // sync:true,//
   logging: debug, // export DEBUG=sql in the environment to get SQL queries
   native: true,    // lets Sequelize know we can use pg-native for ~30% more speed (if you have issues with pg-native feel free to take this out and work it back in later when we have time to help)
 });
@@ -20,7 +20,7 @@ const db = module.exports = new Sequelize(connectionString, {
 require('./models')
 
 // sync the db, creating it if necessary
-function sync(force=true, retries=0, maxRetries=5) {
+function sync(force=false, retries=0, maxRetries=5) {
   return db.sync({force})
   .then(ok => console.log(`Synced models to db ${connectionString}`))
   .catch(fail => {

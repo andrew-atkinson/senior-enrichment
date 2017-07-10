@@ -8,7 +8,7 @@ module.exports = db.define('campus', {
     unique: true,
     allowNull: false
   },
-  image: {
+  imagePath: {
     type: Sequelize.STRING,
   }
 })
