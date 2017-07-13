@@ -10,15 +10,30 @@ class CampusList extends Component {
   render() {
     return (
       <div>
-        <ul>
+        <ul className={`list-unstyled`}>
           {this.props.campuses.map(campus => {
             return (
-              <li key={campus.id}>
-                {campus.name}
-              </li>
+              <div className={`section`} key={campus.id}>
+                <li>
+                  <div className={`container`}>
+                    <NavLink to={`/campus/${campus.id}`}>
+                      <div className={`col-lg-4 col-md-4`}>
+                        {campus.name}
+                      </div>
+                      <div className={`col-lg-6 col-md-6`}>
+                        <img
+                          src={campus.imagePath}
+                          className={`col-lg-12 .img-responsive`}
+                        />
+                      </div>
+                    </NavLink>
+                  </div>
+                </li>
+              </div>
             );
           })}
         </ul>
+        <div className={`section`} />
       </div>
     );
   }
@@ -28,4 +43,4 @@ const mapStateToProps = function(state) {
   return { campuses: state.campuses };
 };
 
-export default connect(mapStateToProps)(CampusList);
+export default withRouter(connect(mapStateToProps)(CampusList));

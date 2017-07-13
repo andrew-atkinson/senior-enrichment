@@ -11,3 +11,8 @@ dealt with on the front end...
     
    theme 
 1. https://www.creative-tim.com/product/material-kit#
+
+make the imagepaths / imageurls relative to the id of the entry - i.e. virtual setter method.
+
+see if I can get findById to work in the routes - - not findOne...
+
