@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'lazenby';
+  src: url('../fonts/lazenby.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/lazenby.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+body {
+  font-family: 'lazenby' ,'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'lazenby' ,'Open Sans', sans-serif;
+}
+p, div {
+    font-family: 'lazenby' ,'Open Sans', sans-serif;
+}

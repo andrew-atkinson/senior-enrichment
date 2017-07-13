@@ -13,7 +13,8 @@ api.use('/student', student);
 // 404 - not in right place
 
 api.get('/*', (req, res, next)=>{
-  res.send('you\'ve arriv\'d at the ole four-oh-four')
+
+  res.send('you\'ve arriv\'d at the ole four-oh-four\n\n'+JSON.stringify(req.body))
 })
 
 

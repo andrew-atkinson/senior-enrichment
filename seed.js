@@ -2,7 +2,7 @@ const db = require('./db');
 const User = require('./db/models/user');
 const Campus = require('./db/models/campus');
 
-const users = [
+const user = [
   { firstName: 'Andrew', lastName: 'Atkinson', email: 'Andrew.Atkinson@mhiaj.edu' },
   { firstName: 'Dana', lastName: 'Hemes', email: 'Dana.Hemes@mhiaj.edu' },
   { firstName: 'Gaius', lastName: 'Baltar', email: 'Gaius.Baltar@mhiaj.edu' },
@@ -20,7 +20,7 @@ const users = [
 ]
 
 
-const camps = [
+const campus = [
   { name: 'Earth', imagePath: 'x' },
   { name: 'Vogon', imagePath: 'y' },
   { name: 'Slartibartfarst', imagePath: 'z' },
@@ -28,12 +28,14 @@ const camps = [
 ];
 
 const seed = () =>
-  Promise.all(camps.map(campus =>
-    Campus.create(campus)))
-  .then(() =>
-    Promise.all(users.map(user =>
-      User.create(user)))
-  );
+  Promise.all(users.map(user =>
+    User.create({
+      user,
+      include: [{
+        model: Campus
+      }]
+    })
+  ));
 
 const main = () => {
   console.log('Syncing db...');

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const db = require('../db');
 const User = require('../db/models/user');
+const Campus = require('../db/models/campus');
 
 router.get('/:id', (req, res, next) => {
   let studentId = req.params.id;
@@ -8,6 +9,7 @@ router.get('/:id', (req, res, next) => {
     .then(user => {
       res.send(user)
     })
+    .catch(next)
 })
 
 router.get('/', (req, res, next) => {
@@ -15,36 +17,51 @@ router.get('/', (req, res, next) => {
     .then(user => {
       res.send(user)
     })
+    .catch(next)
 })
 
 //findOrCreate
 router.post('/', (req, res, next) => {
-  console.log(req.body)
+  const student = req.body;
   User.findOrCreate({
       where: {
-        email: req.body.email,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
+        email: student.email
       },
-
-    })
-    .then((entry, created) => {
-      res.send(entry)
-    })
-    .catch(err => console.log(err))
-})
-
-// needs finishing - only updates the campus at present.
-router.put('/', (req, res, next) => {
-  User.update({ campusId: req.body.campusId }, {
-      where: {
-        email: req.body.email,
+      defaults: {
+        include: [Campus],
+        email: student.email,
+        firstName: student.firstName,
+        lastName: student.lastName,
+        campusId: student.campus
       }
     })
-    .then((entry, updated) => {
-      res.send(entry)
+    .spread((user, created) => {
+      if (!created) {
+        res.send('user not created')
+      } else {
+        res.send(user)
+      }
     })
-    .catch(err => console.log(err))
+    .catch(next)
+})
+
+
+// needs finishing - only updates the campus at present.
+router.put('/:id', (req, res, next) => {
+  User.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+      returning: true
+    })
+    .spread((num, rows) => {
+      if (!num) {
+        res.status(400).send('This student Id doesn\'t exist')
+      } else {
+        res.json({ans:'stuff'}).sendStatus(204)
+      }
+    })
+    .catch(next)
 })
 
 router.delete('/:id', (req, res, next) => {
@@ -52,6 +69,12 @@ router.delete('/:id', (req, res, next) => {
       where: { id: req.params.id }
     })
     .then(res.send('a-ok.'))
+    .catch(next)
 })
+
+// router.use('/', (err, req, res, next) => {
+//   console.log(err, "did I get here?")
+// })
+
 
 module.exports = router;
