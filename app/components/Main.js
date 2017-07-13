@@ -10,6 +10,7 @@ import Home from "./Home";
 
 export default class Main extends Component {
   componentDidMount() {
+    console.log(fetchStudents());
     store.dispatch(fetchStudents());
     store.dispatch(fetchCampuses());
   }
@@ -18,6 +19,7 @@ export default class Main extends Component {
     return (
       <div>
         <Navbar />
+
         <div className={`wrapper`}>
           <div
             className={`header header-filter`}

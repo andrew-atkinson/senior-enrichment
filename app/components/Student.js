@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 function student(student) {
   return (
     <div className={`container col-lg-3`}>
-      <p>
+      <img src={student.imageLocation} className={`col-lg-12 img-circle`} />
+      <h4 className={`text-center`}>
         {student.fullName}
-      </p>
-      <p>
+      </h4>
+      <p className={`text-center`}>
         {student.email}
       </p>
-      <img src={student.imageLocation} className={`col-lg-12 img-circle`} />
     </div>
   );
 }
