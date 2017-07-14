@@ -8,7 +8,6 @@ class StudentList extends Component {
   }
 
   render() {
-    console.log('this.props.campuses', this.props.campuses);
     return (
       <div className={`container`}>
         <div className={`col-lg-12`}>

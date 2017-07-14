@@ -4,6 +4,8 @@ import axios from "axios";
 
 const GET_CAMPUS = "GET_CAMPUS";
 const SET_CAMPUS = "SET_CAMPUS";
+const EDIT_CAMPUS = "EDIT_CAMPUS";
+
 
 // ACTION CREATORS
 
@@ -13,6 +15,10 @@ export function getCampus(campus) {
 
 export function setCampus(campus) {
   return { type: SET_CAMPUS, campus };
+}
+
+export function editCampus(campus) {
+  return { type: EDIT_CAMPUS, campus };
 }
 
 // THUNK CREATORS
@@ -39,6 +45,18 @@ export function setNewCampus(campus) {
   };
 }
 
+export function editCampusThunk(campus) {
+  console.log('campus',campus)
+  return function thunk(dispatch) {
+    axios.put(`/api/campus/${campus.id}`, campus)
+    .then(res => res.data)
+    .then(campus => {
+      const action = editCampus(campus);
+      dispatch(action);
+    });
+  };
+}
+
 // REDUCER
 
 export default function reducer(state = [], action) {
@@ -46,6 +64,8 @@ export default function reducer(state = [], action) {
     case GET_CAMPUS:
       return action.campus;
     case SET_CAMPUS:
+      return action.campus;
+    case EDIT_CAMPUS:
       return action.campus;
     default:
       return state;

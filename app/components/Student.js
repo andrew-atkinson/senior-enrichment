@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { withRouter, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import store, { deleteStudentThunk } from "../store";
 
 function student(student) {
-
-  const campus = student.campuses.filter((campus)=>student.campusId===campus.id)
+  const campus = student.campuses.filter(
+    campus => student.campusId === campus.id
+  );
 
   return (
     <div>
@@ -16,13 +18,28 @@ function student(student) {
         <h4 className={`text-center`}>
           {student.fullName}
         </h4>
-        <p className={`text-center`}>Studying at: {campus[0].name} campus</p>
+        <p className={`text-center`}>
+          Studying at: {campus[0].name} campus
+        </p>
         <p className={`text-center`}>
           {student.email}
         </p>
-        <div className={`col-lg-12 text-center`}><NavLink to={`/editstudent/${student.id}`} className={`btn btn-warning btn-xs btn-round`}>edit</NavLink> <NavLink to={`/`} className={`btn btn-danger btn-xs btn-round`}>delete</NavLink></div>
+        <div className={`col-lg-12 text-center`}>
+          <NavLink
+            to={`/editstudent/${student.id}`}
+            className={`btn btn-warning btn-xs btn-round`}
+          >
+            edit
+          </NavLink>{" "}
+          <button
+            onClick={evt => handleClick(evt, student.id)}
+            className={`btn btn-danger btn-xs btn-round`}
+          >
+            delete
+          </button>
+        </div>
         <hr />
-        <div className={`col-lg-12 text-center`}></div>
+        <div className={`col-lg-12 text-center`} />
         <br />
         <br />
       </div>
@@ -30,8 +47,13 @@ function student(student) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { campuses: state.campuses}
+function handleClick(evt, studentId) {
+  evt.preventDefault();
+  store.dispatch(deleteStudentThunk(studentId));
 }
+
+const mapStateToProps = state => {
+  return { campuses: state.campuses };
+};
 
 export default connect(mapStateToProps)(student);

@@ -18,16 +18,6 @@ class editStudent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onComponentDidMount() {
-    this.setState({
-      firstName: "jljkl",
-      lastName: "jlkljk",
-      email: "jlkjkl",
-      campus: 1,
-      id: this.props.match.params.id
-    });
-  }
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -38,15 +28,14 @@ class editStudent extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.editStudentThunk(this.state);
-    // this.props.history.push("/student");
-    // this.setState(tempState);
+    this.props.history.push("/student");
+    this.setState(tempState);
   }
 
   render() {
     const currentStudent = this.props.students.filter(student => {
       return student.id === +this.props.match.params.id
     })
-    console.log("currentStudent",currentStudent)
 
     return (
       <div>

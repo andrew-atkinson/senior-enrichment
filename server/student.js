@@ -48,10 +48,8 @@ router.post('/', (req, res, next) => {
 })
 
 
-// needs finishing - only updates the campus at present.
 router.put('/:id', (req, res, next) => {
-  console.log('here???')
-  console.log("put req:", req.body, req.params)
+
   User.update(req.body, {
       where: {
         id: req.params.id,
@@ -69,6 +67,7 @@ router.put('/:id', (req, res, next) => {
 })
 
 router.delete('/:id', (req, res, next) => {
+  console.log(req.params.id)
   User.destroy({
       where: { id: req.params.id }
     })

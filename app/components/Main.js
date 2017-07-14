@@ -10,6 +10,7 @@ import EditStudent from "./EditStudent";
 import CampusList from "./CampusList";
 import CampusDetail from "./CampusDetail";
 import NewCampus from './NewCampus';
+import EditCampus from './EditCampus';
 
 export default class Main extends Component {
   componentDidMount() {
@@ -80,6 +81,11 @@ export default class Main extends Component {
                 path={`/editstudent/:id`}
                 className={`container`}
                 component={EditStudent}
+              />
+              <Route
+                path={`/editcampus/:id`}
+                className={`container`}
+                component={EditCampus}
               />
             </Switch>
           </div>

@@ -51,6 +51,24 @@ router.post('/', (req, res, next) => {
     .catch(next)
 })
 
+router.put('/:id', (req, res, next) => {
+  console.log('campus put:')
+  Campus.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+      returning: true
+    })
+    .spread((num, rows) => {
+      if (!num) {
+        res.status(400).send('This campus Id doesn\'t exist')
+      } else {
+        res.status(204).send('campus updated')
+      }
+    })
+    .catch(next)
+})
+
 router.delete('/:id', (req, res, next) => {
   Campus.destroy({
       where: { id: req.params.id }

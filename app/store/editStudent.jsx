@@ -13,9 +13,6 @@ export function editStudent(student) {
 // THUNK CREATORS
 
 export const editStudentThunk = (body) => dispatch => {
-  console.log('body', body);
-  console.log('axios', axios);
-  console.log('axios.put', axios.put)
     axios.put(`/api/student/${body.id}`, body)
       .then(res => res.data)
       .then(student => {

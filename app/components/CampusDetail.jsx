@@ -15,16 +15,25 @@ class CampusDetail extends Component {
     return (
       <div>
         <div className={`container`}>
-          <h1>
-            {this.props.campuses[0].name}
-          </h1>
-        </div>
-        <div className={`container`}>
-          <div className={`col-lg-3`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-xs-12`}>
+            <h1 className={`text-center`}>
+              {this.props.campuses[0].name}
+            </h1>
             <img
               src={this.props.campuses[0].imagePath}
-              className={`col-lg-12 .img-responsive`}
+              className={`col-lg-12 col-md-12 col-sm-12 col-xs-12`}
             />
+            <div className={`col-lg-12 text-center`}>
+              <NavLink
+                to={`/editcampus/${this.props.campuses[0].id}`}
+                className={`btn btn-warning btn-xs btn-round`}
+              >
+              edit
+              </NavLink>
+              <button className={`btn btn-danger btn-xs btn-round`}>
+                delete
+              </button>
+            </div>
           </div>
           <div className={`col-lg-9`}>
             <h3>Students</h3>
