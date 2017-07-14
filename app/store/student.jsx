@@ -13,9 +13,6 @@ export function setStudent(student) {
 // THUNK CREATORS
 
 export const setNewStudent = (body) => dispatch => {
-  console.log('body', body);
-  console.log('axios', axios);
-  console.log('axios.post', axios.post);
     axios.post('/api/student', body)
       .then(res => res.data)
       .then(student => {

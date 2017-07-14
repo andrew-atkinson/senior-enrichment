@@ -35,13 +35,17 @@ router.post('/', (req, res, next) => {
       where: {
         name: req.body.name
       },
+      defaults: {
+        name: req.body.firstName,
+        imagePath:req.body.imagePath
+      },
       returning: true
     })
     .spread((result, created) => {
       if (!created) {
         res.json('campus exists')
       } else {
-        res.json(result.name)
+        res.json('campus created')
       }
     })
     .catch(next)

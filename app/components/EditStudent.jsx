@@ -18,14 +18,14 @@ class editStudent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onComponentDidMount(){
-  //   this.setState({
-  //     firstName: "",
-  // lastName: "",
-  // email: "",
-  // campus: 1,
-
-  //     id: this.props.match.params.id })
+  onComponentDidMount() {
+    this.setState({
+      firstName: "jljkl",
+      lastName: "jlkljk",
+      email: "jlkjkl",
+      campus: 1,
+      id: this.props.match.params.id
+    });
   }
 
   handleChange(event) {
@@ -37,13 +37,17 @@ class editStudent extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("this.state", this.state);
     this.props.editStudentThunk(this.state);
     // this.props.history.push("/student");
     // this.setState(tempState);
   }
 
   render() {
+    const currentStudent = this.props.students.filter(student => {
+      return student.id === +this.props.match.params.id
+    })
+    console.log("currentStudent",currentStudent)
+
     return (
       <div>
         <div className={`container`}>
@@ -61,6 +65,7 @@ class editStudent extends Component {
                     className="form-control"
                     type="text"
                     name="firstName"
+                    placeholder={currentStudent.firstName}
                     value={this.state.firstName}
                     onChange={this.handleChange}
                   />
@@ -75,6 +80,7 @@ class editStudent extends Component {
                     className="form-control"
                     type="text"
                     name="lastName"
+                    placeholder={currentStudent.lastName}
                     value={this.state.lastName}
                     onChange={this.handleChange}
                   />
@@ -89,6 +95,7 @@ class editStudent extends Component {
                     className="form-control"
                     type="email"
                     name="email"
+                    placeholder={currentStudent.email}
                     value={this.state.email}
                     onChange={this.handleChange}
                   />
@@ -107,7 +114,7 @@ class editStudent extends Component {
                   >
                     {this.props.campuses.map(campus => {
                       return (
-                        <option key={campus.id} value={campus.id}>
+                        <option key={campus.id} value={campus.id} selected={currentStudent.campus === campus.id?{selected}:null}>
                           {campus.name}
                         </option>
                       );

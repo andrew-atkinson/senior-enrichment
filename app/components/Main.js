@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
 import store, { fetchStudents, fetchCampuses } from "../store";
+import Home from "./Home";
 import StudentList from "./StudentList";
 import StudentDetail from "./StudentDetail";
-import CampusList from "./CampusList";
-import CampusDetail from "./CampusDetail";
-import Home from "./Home";
 import newStudent from "./newStudent";
 import EditStudent from "./EditStudent";
+import CampusList from "./CampusList";
+import CampusDetail from "./CampusDetail";
+import NewCampus from './NewCampus';
 
 export default class Main extends Component {
   componentDidMount() {
@@ -60,6 +61,12 @@ export default class Main extends Component {
                 component={CampusList}
               />
               <Route
+                exact
+                path={`/newcampus`}
+                className={`container`}
+                component={NewCampus}
+              />
+              <Route
                 path={`/campus/:campusId`}
                 className={`container`}
                 component={CampusDetail}
@@ -69,7 +76,6 @@ export default class Main extends Component {
                 className={`container`}
                 component={newStudent}
               />
-
               <Route
                 path={`/editstudent/:id`}
                 className={`container`}

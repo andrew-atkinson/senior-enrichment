@@ -8,8 +8,6 @@ function campus(campus) {
         <h4 className={`col-lg-4 col-md-4 text-center`}>
           {campus.name}
         </h4>
-
-
       <img src={campus.imagePath} className={`col-lg-12 col-md-12 col-sm-12 col-xs-12`} />
       </NavLink>
     </div>
