@@ -72,7 +72,7 @@ router.delete('/:id', (req, res, next) => {
   Campus.destroy({
       where: { id: req.params.id }
     })
-    .then((result) => res.json(result))
+    .then(() => res.send(req.params.id))
     .catch(next)
 })
 
