@@ -3,6 +3,7 @@ const db = require('../db');
 const User = require('../db/models/user');
 const Campus = require('../db/models/campus');
 
+
 router.get('/:id', (req, res, next) => {
   let studentId = req.params.id;
   User.findOne({ where: { id: studentId } })
@@ -32,14 +33,15 @@ router.post('/', (req, res, next) => {
         email: student.email,
         firstName: student.firstName,
         lastName: student.lastName,
-        campusId: student.campus
+        campusId: student.campus,
+        imageLocation:student.imageLocation
       }
     })
     .spread((user, created) => {
       if (!created) {
         res.send('user not created')
       } else {
-        res.send(user)
+        res.send('user created')
       }
     })
     .catch(next)
@@ -48,6 +50,8 @@ router.post('/', (req, res, next) => {
 
 // needs finishing - only updates the campus at present.
 router.put('/:id', (req, res, next) => {
+  console.log('here???')
+  console.log("put req:", req.body, req.params)
   User.update(req.body, {
       where: {
         id: req.params.id,
@@ -58,7 +62,7 @@ router.put('/:id', (req, res, next) => {
       if (!num) {
         res.status(400).send('This student Id doesn\'t exist')
       } else {
-        res.json({ans:'stuff'}).sendStatus(204)
+        res.send('student updated').sendStatus(204)
       }
     })
     .catch(next)

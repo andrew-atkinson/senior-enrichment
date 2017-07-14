@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import Campus from './campus';
 
 class CampusList extends Component {
   componentDidMount() {
@@ -10,29 +11,31 @@ class CampusList extends Component {
   render() {
     return (
       <div>
-        <ul className={`list-unstyled`}>
-          {this.props.campuses.map(campus => {
-            return (
-              <div className={`section`} key={campus.id}>
-                <li>
-                  <div className={`container`}>
-                    <NavLink to={`/campus/${campus.id}`}>
-                      <div className={`col-lg-4 col-md-4`}>
-                        {campus.name}
-                      </div>
-                      <div className={`col-lg-6 col-md-6`}>
-                        <img
-                          src={campus.imagePath}
-                          className={`col-lg-12 .img-responsive`}
-                        />
-                      </div>
-                    </NavLink>
+        <div className={`container`}>
+          <h2 className={`text-center`}>
+            Campuses
+            <NavLink
+              to={`/newcampus`}
+              className={`btn btn-success btn-xs btn-round`}
+            >
+              new campus
+            </NavLink>
+          </h2>
+
+          <div className={`col-lg-12`}>
+            <ul className={`list-unstyled`}>
+              {this.props.campuses.map(campus => {
+                return (
+                  <div key={campus.id}>
+                    <li>
+                      <Campus {...campus}/>
+                    </li>
                   </div>
-                </li>
-              </div>
-            );
-          })}
-        </ul>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
         <div className={`section`} />
       </div>
     );

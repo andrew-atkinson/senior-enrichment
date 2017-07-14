@@ -8,6 +8,7 @@ class StudentList extends Component {
   }
 
   render() {
+    console.log('this.props.campuses', this.props.campuses);
     return (
       <div className={`container`}>
         <div className={`col-lg-12`}>
@@ -27,7 +28,7 @@ class StudentList extends Component {
 }
 
 const mapStateToProps = function(state) {
-  return { students: state.students };
+  return { students: state.students, campuses: state.campuses };
 };
 
 export default connect(mapStateToProps)(StudentList);

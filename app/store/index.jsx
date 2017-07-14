@@ -9,6 +9,8 @@ import students, { fetchStudents, fetchStudent } from "./students";
 import campuses, { fetchCampuses } from "./campuses";
 import campus, { fetchCampus } from "./campus";
 import changeCampus, { changeCurrentCampus } from "./changeCampus";
+import student, { setNewStudent } from "./student";
+import editStudent, { editStudentThunk } from "./editStudent";
 
 // reducers
 const reducer = combineReducers({
@@ -16,7 +18,9 @@ const reducer = combineReducers({
   students,
   campuses,
   campus,
-  changeCampus
+  changeCampus,
+  student,
+  editStudent
 });
 
 //create store
@@ -31,3 +35,5 @@ export * from "./students";
 export * from "./campuses";
 export * from "./campus";
 export * from "./changeCampus";
+export * from "./student";
+export * from "./editStudent";

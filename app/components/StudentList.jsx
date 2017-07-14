@@ -5,17 +5,20 @@ import Student from "./Student";
 
 class StudentList extends Component {
   componentDidMount() {
-    const { students } = this.props;
+    const { students, campuses } = this.props;
   }
 
   render() {
+
     return (
       <div>
         <div className={`container`}>
-          <h3>Students</h3>
+          <h2 className={`text-center`}>Students
+          <NavLink to={`/newstudent`} className={`btn btn-success btn-xs btn-round`}>new student</NavLink></h2>
+
           <div className={`col-lg-12`}>
             <ul className={`list-unstyled`}>
-              {this.props.students.map(student => {
+              {this.props.students.reverse().map(student => {
                 return (
                   <div>
                     <li>
@@ -34,7 +37,7 @@ class StudentList extends Component {
 }
 
 const mapStateToProps = function(state) {
-  return { students: state.students };
+  return { students: state.students, campuses: state.campuses };
 };
 
 export default connect(mapStateToProps)(StudentList);

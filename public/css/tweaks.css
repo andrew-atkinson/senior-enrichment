@@ -1,0 +1,13 @@
+nav, navbar, navbar > container, collapse, navrbar-default, navbar navbar-fixed-top navbar-color-on-scroll navbar-transparent navbar-default, .nav {
+  background-color: grey;
+}
+
+h2.title {
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
+a.active {
+  color: blue;
+  text-shadow: 1px 1px 4px black;
+}
