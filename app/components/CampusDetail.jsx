@@ -3,7 +3,7 @@ import { withRouter, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import changeCampus, { changeCurrentCampus } from "../store";
 import Student from "./Student";
-import store from "../store";
+import store, { deleteCampusThunk } from "../store";
 
 class CampusDetail extends Component {
   componentDidMount() {
@@ -28,9 +28,12 @@ class CampusDetail extends Component {
                 to={`/editcampus/${this.props.campuses[0].id}`}
                 className={`btn btn-warning btn-xs btn-round`}
               >
-              edit
+                edit
               </NavLink>
-              <button className={`btn btn-danger btn-xs btn-round`}>
+              <button
+                className={`btn btn-danger btn-xs btn-round`}
+                onClick={evt => handleClick(evt, this.props.match.params.campusId)}
+              >
                 delete
               </button>
             </div>
@@ -69,5 +72,10 @@ const mapStateToProps = function(state, ownProps) {
     )
   };
 };
+
+function handleClick(evt, campusId) {
+  evt.preventDefault();
+  store.dispatch(deleteCampusThunk(campusId));
+}
 
 export default withRouter(connect(mapStateToProps)(CampusDetail));

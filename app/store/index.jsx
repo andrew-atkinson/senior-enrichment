@@ -7,7 +7,7 @@ import axios from "axios";
 import navBar from "./navBar";
 import students, { fetchStudents, fetchStudent } from "./students";
 import campuses, { fetchCampuses } from "./campuses";
-import campus, { fetchCampus, setNewCampus, editCampusThunk } from "./campus";
+import campus, { fetchCampus, setNewCampus, editCampusThunk, deleteCampusThunk } from "./campus";
 import changeCampus, { changeCurrentCampus } from "./changeCampus";
 import student, { setNewStudent, deleteStudentThunk } from "./student";
 import editStudent, { editStudentThunk } from "./editStudent";

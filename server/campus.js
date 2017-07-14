@@ -52,7 +52,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  console.log('campus put:')
   Campus.update(req.body, {
       where: {
         id: req.params.id,
