@@ -42,7 +42,7 @@ export default class Main extends Component {
                 exact
                 path={`/`}
                 className={`container`}
-                component={Home}
+                component={CampusList}
               />
               <Route
                 exact

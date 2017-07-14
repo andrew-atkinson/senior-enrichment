@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import store, { deleteStudentThunk } from "../store";
 
 function student(student) {
-  const campus = student.campuses.filter(
+  console.log('campus', student)
+  const campus = student.campuses && student.campuses.filter(
     campus => student.campusId === campus.id
   );
 

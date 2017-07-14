@@ -22,7 +22,7 @@ function Navbar(props) {
 
             <span className={`icon-bar`} />
           </button>
-          <NavLink className={`navbar-brand`} to={`/`}>
+          <NavLink className={`navbar-brand`} to={`/campus`}>
             <span>M.H.I.A.J</span>
           </NavLink>
         </div>
